@@ -1,17 +1,10 @@
 const express = require('express');
 const app = express();
-const UsersServices = require('../apiv1/services/usuarios.services');
-const appRoutes = require('../apiv1/routes/usuarios.routes');
+const UsersServices = require('./services/usuarios.services');
+const appRoutes = require('./routes/usuarios.routes');
 
 app.use('/', appRoutes);
 
-app.put('/usuarios/actualizar', (req, resp) => {
-  resp.json({
-    status: 200,
-    Message: 'usuario actualizado',
-    result: UsersServices.putUsers(),
-  });
-});
 app.delete('/usuarios/eliminar', (req, resp) => {
   resp.json({
     status: 200,
