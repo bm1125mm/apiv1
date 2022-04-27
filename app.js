@@ -1,10 +1,12 @@
-const express = require('express');
-const app = express();
-const UsersServices = require('./services/usuarios.services');
-const appRoutes = require('./routes/usuarios.routes');
+const Server = require('./models/server.models')
 
-app.use('/', appRoutes);
 
-app.listen(3090);
-console.log('escuchando puerto 3090');
+
+const server = new Server()
+
+server.listen(3090)
+
+
+
+
 
