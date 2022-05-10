@@ -1,20 +1,14 @@
 const { response } = require('express');
 const res = require('express/lib/response');
 const UsersServices = require('../services/usuarios.services');
-const UserModel = require('../models/user.models')
 
-
-const getUsersController = (req, resp = response) => {
-  //vamos a obtener lo que viene por parametro en la url
-  let userId = req.params.id;
-  //hacemos un match con el id, es decir buscamos por id (en cada objeto, dentro usuarios) si es igual al userId
-  let searchID = usuarios.find((usuario) => usuario.id === parseInt(userId));
-
-  if (!searchID) {
-    resp.status(404).send('El usuario buscado no existe');
-  }
-  //luego sigue el codigo normalmente devolviendo lo que el servicio nos va a devolver
-  return resp.status(200).json(searchID);
+const getUsersController = async (req, resp = response) => {
+  const listUsers = await UsersServices.getUsers();
+  return resp.status(200).json({
+    status: 200,
+    message: 'Lista usuarios cargada correctamente',
+    users: listUsers, //
+  });
 };
 
 const putUsersController = (req, resp = response) => {
@@ -28,17 +22,17 @@ const deleteUsersController = (req, resp = response) => {
 };
 
 const postUsersController = async (req, resp = response) => {
- // const postUsers = UsersServices.postUsers();
-const {firstName, lastName} = req.body
-
- try {
-  const user = new UserModel({firstName, lastName})
-  await user.save();
-  return resp.status(200).json(req.body)
-} catch (error) {
-  console.log('Error', error)
-}
-
+  const { firstName, lastName } = req.body; //capturamos informacion que viene desde el front
+  try {
+    const postUsers = await UsersServices.postUsers(firstName, lastName);
+    console.log(postUsers);
+    return resp.status(201).json({
+      status: 201,
+      message: 'Usuario creado satisfactoriamente',
+    });
+  } catch (error) {
+    console.log('Error', error);
+  }
 };
 
 const patchUsersController = (req, resp = response) => {
