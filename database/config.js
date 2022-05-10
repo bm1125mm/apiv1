@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const dbConection = async ()=>{
     try{ 
 
-      mongoose.connect('mongodb://localhost:27017/tienda', console.log('conexion exitosa'))
+      mongoose.connect('mongodb://localhost:27017/tiendafacu', console.log('conexion exitosa'))
 
 
     }

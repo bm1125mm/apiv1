@@ -1,5 +1,8 @@
-const getUsers = () => {
-  return 'respondiendo usuarios desde el servicio';
+const UserModel = require('../models/user.models');
+
+const getUsers = async () => {
+  const listUser = await UserModel.find();
+  return listUser;
 };
 
 const putUsers = () => {
@@ -10,8 +13,14 @@ const deleteUsers = () => {
   return 'borrando usuarios desde el servicio';
 };
 
-const postUsers = () => {
-  return 'agregado usuario desde el servicio';
+const postUsers = async (firstName, lastName) => {
+  try {
+    const user = new UserModel({ firstName, lastName });
+    await user.save();
+    return 'usuario guardado desde el servicio';
+  } catch (error) {
+    return error;
+  }
 };
 
 const patchUsers = () => {
