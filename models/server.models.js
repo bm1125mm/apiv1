@@ -1,5 +1,7 @@
 const express = require('express');
-const appRoutes = require('../routes/usuarios.routes');
+const userRoutes = require('../routes/usuarios.routes');
+const porductsRoutes = require('../routes/products.routes')
+
 const {dbConection} = require ('../database/config')
 
 
@@ -14,15 +16,12 @@ constructor(){
 }
 
 listen(port){
-
     this.app.listen(port);    
     console.log('escuchando puerto:', port);
-
 }
 routes(){
-
-    this.app.use('/', appRoutes);
-
+    this.app.use('/usuarios', userRoutes);
+    this.app.use('/products', porductsRoutes)
 }
 
 upConection(){

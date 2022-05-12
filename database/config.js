@@ -5,7 +5,6 @@ const dbConection = async ()=>{
 
       mongoose.connect('mongodb://localhost:27017/tiendafacu', console.log('conexion exitosa'))
 
-
     }
     catch(error){
 
