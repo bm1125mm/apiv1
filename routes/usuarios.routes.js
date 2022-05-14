@@ -10,9 +10,9 @@ const {
 const router = Router();
 router.get('/lista', getUsersController);
 
-router.put('/actualizar', putUsersController);
+router.put('/actualizar/:id', putUsersController);
 
-router.delete('/eliminar', deleteUsersController);
+router.delete('/eliminar/:id', deleteUsersController);
 
 router.post('/agregar', postUsersController);
 
