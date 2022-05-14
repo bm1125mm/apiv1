@@ -26,7 +26,6 @@ try{
 }
 
 
-
 module.exports = {
     getProductsController,
     postProductsController

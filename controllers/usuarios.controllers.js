@@ -11,14 +11,28 @@ const getUsersController = async (req, resp = response) => {
   });
 };
 
-const putUsersController = (req, resp = response) => {
-  const putUsers = UsersServices.putUsers(userID);
-  return resp.status(200).json(putUsers);
+const putUsersController = async(req, resp = response) => {
+  const {firstName, lastName} = req.body 
+  const {id} = req.params
+  console.log(id);
+  const putUsers = await UsersServices.putUsers(id, firstName, lastName);
+  return resp.status(200).json({
+    status: 200,
+    message: 'usuario actualizado correctamente',
+    putUsers
+  });
 };
 
-const deleteUsersController = (req, resp = response) => {
-  const deleteUsers = UsersServices.deleteUsers();
-  return resp.status(200).json(deleteUsers);
+const deleteUsersController = async (req, resp = response) => {
+  const {id} = req.params
+  console.log(id);
+  const deleteUsers = await UsersServices.deleteUsers(id);
+  return resp.status(200).json({
+    deleteUsers,
+    status: 204,
+    message: "Usuario eliminado"
+  });
+  
 };
 
 const postUsersController = async (req, resp = response) => {

@@ -5,12 +5,18 @@ const getUsers = async () => {
   return listUser;
 };
 
-const putUsers = () => {
-  return 'actualizado usuarios desde el servicio';
+const putUsers = async (id, firstName, lastName) => {
+const userUpdate = await UserModel.findByIdAndUpdate(id, {firstName, lastName}, {new: true}) 
+
+return userUpdate;
 };
 
-const deleteUsers = () => {
-  return 'borrando usuarios desde el servicio';
+const deleteUsers = async (id) => {
+  const userToDelete = await UserModel.findById(id);
+  console.log(userToDelete);
+  const deleteUsers = await UserModel.findByIdAndDelete(id,);
+  return userToDelete;
+ 
 };
 
 const postUsers = async (firstName, lastName) => {
