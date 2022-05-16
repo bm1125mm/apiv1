@@ -16,6 +16,6 @@ router.delete('/eliminar/:id', deleteUsersController);
 
 router.post('/agregar', postUsersController);
 
-router.patch('/actualizado', patchUsersController);
+router.patch('/actualizado/:id', patchUsersController);
 
 module.exports = router;
