@@ -1,10 +1,34 @@
 const productsModel = require ('../models/products.models')
 
+
 const getProducts = async () =>{
-    const listProducts = await productsModel.find();
-    return listProducts
+    try{
+        const listProducts = await productsModel.find();
+        return listProducts;
+    }catch(error){
+        return error
+    }    
 };
 
+const putProducts = async (id, nameProducts, descriptionProducts, serialProducts) => {
+    try{
+    const productUpdate = await productsModel.findByIdAndUpdate (id, {nameProducts, descriptionProducts, serialProducts}, {new: true})
+    return productUpdate;
+    }catch(error){
+        return error
+    }
+}
+
+const deleteProducts = async (id) =>{
+    try{
+    const productsToDelete = await productsModel.findById(id);
+    console.log(productsToDelete);
+    const deleteProducts = await productsModel.findByIdAndDelete(id,);
+    return deleteProducts;
+}catch (error){
+    return error
+}    
+}
 
 const postProducts = async (nameProducts, descriptionProducts, serialProducts )=>{
     try{
@@ -16,5 +40,15 @@ const postProducts = async (nameProducts, descriptionProducts, serialProducts )=
     }
 }
 
+const patchProducts = async (id, nameProducts, descriptionProducts, serialProducts) =>{
+    try{
+        const patchProductsController = await productsModel.findByIdAndUpdate(id, {nameProducts, deleteProducts, serialProducts}, {new: true})
+        return patchProductsController;
+    }catch (error){
+        return error
+    }
+}
 
-module.exports = {getProducts, postProducts}
+
+
+module.exports = {getProducts, putProducts, deleteProducts, postProducts, patchProducts}
