@@ -5,7 +5,7 @@ const {
     postProductsController,
     deleteProductsController,
     patchProductsController} = require ('../controllers/products.controller');
-const { deleteUsersController } = require('../controllers/usuarios.controllers');
+
 
 prodRouter.get('/lista', getProductsController);
 

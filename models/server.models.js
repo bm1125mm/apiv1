@@ -2,7 +2,9 @@ const express = require('express');
 const userRoutes = require('../routes/usuarios.routes');
 const porductsRoutes = require('../routes/products.routes')
 
-const {dbConection} = require ('../database/config')
+
+const {dbConection} = require ('../database/config');
+const categoryRoutes = require('../routes/category.routes');
 
 
 class Server {
@@ -21,7 +23,8 @@ listen(port){
 }
 routes(){
     this.app.use('/usuarios', userRoutes);
-    this.app.use('/products', porductsRoutes)
+    this.app.use('/products', porductsRoutes);
+    this.app.use('/category', categoryRoutes)
 }
 
 upConection(){

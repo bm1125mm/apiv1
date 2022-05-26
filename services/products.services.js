@@ -1,6 +1,5 @@
 const productsModel = require ('../models/products.models')
 
-
 const getProducts = async () =>{
     try{
         const listProducts = await productsModel.find();
@@ -42,7 +41,7 @@ const postProducts = async (nameProducts, descriptionProducts, serialProducts )=
 
 const patchProducts = async (id, nameProducts, descriptionProducts, serialProducts) =>{
     try{
-        const patchProductsController = await productsModel.findByIdAndUpdate(id, {nameProducts, deleteProducts, serialProducts}, {new: true})
+        const patchProductsController = await productsModel.findByIdAndUpdate(id, {nameProducts, descriptionProducts, serialProducts}, {new: true})
         return patchProductsController;
     }catch (error){
         return error
