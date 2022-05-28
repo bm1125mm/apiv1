@@ -1,9 +1,9 @@
-const {Schema, model} = require ('mongoose');
+const { Schema, model } = require('mongoose');
 
 const ProductsSchema = Schema({
-    nameProducts: {type: String},
-    descriptionProducts: {type: String},
-    serialProducts: {type: Number}
-})
+  nameProducts: { type: String }, //campo de requerido
+  descriptionProducts: { type: String },
+  serialProducts: { type: Number }, //campo de requerido
+});
 
-module.exports = model('products', ProductsSchema)
+module.exports = model('products', ProductsSchema);
