@@ -1,7 +1,7 @@
-const { Schema, model } = require("mongoose");
+const { Schema, model } = require('mongoose');
 
 const CategoySchema = Schema({
-    name: {type: String},
-})
+  name: { type: String }, //campo de requerido
+});
 
-module.exports = model('Category', CategoySchema)
+module.exports = model('Category', CategoySchema);
