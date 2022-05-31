@@ -40,13 +40,12 @@ const deleteCategoryController = async (req, resp)=>{
     }
 }
 const postCategoryController = async(req, resp)=>{
-    const {name} = req.body
+    const {name, description} = req.body
 try{
-    const postCategory = await CategoryServices.postCategory(name);
+    const postCategory = await CategoryServices.postCategory(name, description);
     return resp.status(201).json({
         status: 201,
-        message:'Categoria creada',
-        postCategory
+        message: postCategory,
     })
   }catch(error){
     console.log(error)

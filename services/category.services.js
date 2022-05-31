@@ -30,13 +30,19 @@ const deleteCategory = async (id)=>{
     }
 }
 
-const postCategory = async(name)=>{
-try {
-    const categorySave = new CategoryModels({name})
+const postCategory = async(name, description)=>{
+     const serchCategory = await categoryModels.findOne ({name});
+     console.log(serchCategory)
+if(!serchCategory){
+     try {
+    const categorySave = new CategoryModels({name, description})
     await categorySave.save();
-    return `La categoria: ${name} creado satisfactoriamente`
+    return `La categoria: ${name} fue creada satisfactoriamente`
 } catch (error) {
     console.log(error)
+}
+}else{
+    return 'La categoria ya existe'
 }
 }
 
