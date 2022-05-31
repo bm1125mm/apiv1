@@ -48,7 +48,7 @@ try{
     console.log(postProducts);
     return resp.status(201).json({
     status: 201,
-    message: 'Producto creado satisfactoriamente',
+    message: postProducts,
     });
 }   catch(error){
     console.log('error', error)

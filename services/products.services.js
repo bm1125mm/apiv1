@@ -30,12 +30,18 @@ const deleteProducts = async (id) =>{
 }
 
 const postProducts = async (nameProducts, descriptionProducts, serialProducts )=>{
-    try{
-        const products = new productsModel({nameProducts, descriptionProducts, serialProducts});
-        await products.save();
-        return 'producto guardado desde el servicio';
-    }   catch (error){
-        return error;
+    const serchProducts = await productsModel.findOne({serialProducts});
+    console.log(serchProducts);
+    if (!serchProducts){
+        try{
+            const products = new productsModel({nameProducts, descriptionProducts, serialProducts});
+            await products.save();
+            return 'producto guardado desde el servicio';
+        }   catch (error){
+            return error;
+    }
+    }else{
+        return 'El producto ya existe'
     }
 }
 
