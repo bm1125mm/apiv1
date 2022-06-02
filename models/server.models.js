@@ -1,10 +1,9 @@
 const express = require('express');
 const userRoutes = require('../routes/usuarios.routes');
 const porductsRoutes = require('../routes/products.routes')
-
-
-const {dbConection} = require ('../database/config');
 const categoryRoutes = require('../routes/category.routes');
+const notesRoutes = require('../routes/notes.routes')
+const {dbConection} = require ('../database/config');
 
 
 class Server {
@@ -25,6 +24,7 @@ routes(){
     this.app.use('/usuarios', userRoutes);
     this.app.use('/products', porductsRoutes);
     this.app.use('/category', categoryRoutes)
+    this.app.use('/notes', notesRoutes)
 }
 
 upConection(){
