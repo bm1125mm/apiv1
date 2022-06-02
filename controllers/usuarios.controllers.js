@@ -16,11 +16,11 @@ const getUsersController = async (req, resp = response) => {
 };
 
 const putUsersController = async (req, resp = response) => {
-  const { firstName, lastName } = req.body;
+  const { firstName, lastName, email, pass } = req.body;
   const { id } = req.params;
   console.log(id);
   try {
-    const putUsers = await UsersServices.putUsers(id, firstName, lastName);
+    const putUsers = await UsersServices.putUsers(id, firstName, lastName, email, pass);
     return resp.status(200).json({
       status: 200,
       message: 'usuario actualizado correctamente',
@@ -47,9 +47,9 @@ const deleteUsersController = async (req, resp = response) => {
 };
 
 const postUsersController = async (req, resp = response) => {
-  const { firstName, lastName, email } = req.body; //capturamos informacion que viene desde el front
+  const { firstName, lastName, email, pass } = req.body; //capturamos informacion que viene desde el front
   try {
-    const postUsers = await UsersServices.postUsers(firstName, lastName, email);
+    const postUsers = await UsersServices.postUsers(firstName, lastName, email, pass);
     console.log(postUsers);
     return resp.status(201).json({
       status: 201,
