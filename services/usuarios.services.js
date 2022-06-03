@@ -1,4 +1,5 @@
 const UserModel = require('../models/user.models');
+const bcryptjs = require('bcryptjs');
 
 const getUsers = async () => {
   try {
@@ -11,11 +12,7 @@ const getUsers = async () => {
 
 const putUsers = async (id, firstName, lastName, email, password) => {
   try {
-    const userUpdate = await UserModel.findByIdAndUpdate(
-      id,
-      { firstName, lastName, email, password },
-      { new: true },
-    );
+    const userUpdate = await UserModel.findByIdAndUpdate(id, { firstName, lastName, email, password }, { new: true });
     return userUpdate;
   } catch (error) {
     return error;
@@ -40,10 +37,13 @@ const deleteUsers = async (id) => {
 
 const postUsers = async (firstName, lastName, email, password) => {
   const searchUser = await UserModel.findOne({ email });
+
   console.log(searchUser);
   if (!searchUser) {
     try {
+      const salt = bcryptjs.genSaltSync(1);
       const user = new UserModel({ firstName, lastName, email, password });
+      user.password = bcryptjs.hashSync(password, salt);
       await user.save();
       return 'usuario guardado desde el servicio';
     } catch (error) {
@@ -56,11 +56,7 @@ const postUsers = async (firstName, lastName, email, password) => {
 
 const patchUsers = async (id, firstName, lastName) => {
   try {
-    const userPatchUpdate = await UserModel.findByIdAndUpdate(
-      id,
-      { firstName, lastName },
-      { new: true },
-    );
+    const userPatchUpdate = await UserModel.findByIdAndUpdate(id, { firstName, lastName }, { new: true });
     return userPatchUpdate;
   } catch (error) {
     return error;

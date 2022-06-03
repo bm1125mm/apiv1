@@ -53,13 +53,13 @@ const deleteUsersController = async (req, resp = response) => {
 };
 
 const postUsersController = async (req, resp = response) => {
-  const { firstName, lastName, email, pass } = req.body; //capturamos informacion que viene desde el front
+  const { firstName, lastName, email, password } = req.body; //capturamos informacion que viene desde el front
   try {
     const postUsers = await UsersServices.postUsers(
       firstName,
       lastName,
       email,
-      pass,
+      password,
     );
     console.log(postUsers);
     return resp.status(201).json({
